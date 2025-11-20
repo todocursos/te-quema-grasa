@@ -41,7 +41,7 @@ const titles = computed(() => {
 onBeforeMount( async () => {
   window.scrollTo(0, 0);
   try {
-    let response = await getSheetData(window.location.href.slice(window.location.href.lastIndexOf('/') + 1))
+    let response = await getSheetData()
     console.log("RESPUESTA. ", response)
     cursos.value = response[0]
     redesSociales.value = response[1]

@@ -92,7 +92,7 @@
   
         <v-col cols="12" md="7">
           <v-virtual-scroll 
-            height="400"
+            height="600"
             width="100%"
             class="pa-4"
             :item-height="150"
@@ -204,7 +204,7 @@
       :style="{background: infoCurso['COLOR - BANNER'], color: 'white'}"
     >
       <h2 class="text-h5 font-weight-bold mb-2 font-lato">¡No esperes más para transformar tu futuro!</h2>
-      <p class="mb-6 font-syne">Adquiere el ebook <span class="font-weight-bold">“{{infoCurso['TITULO']}}”</span> hoy mismo y comienza tu camino hacia el éxito.</p>
+      <p class="mb-6 font-syne">Adquiere el <span class="font-weight-bold">“{{infoCurso['TITULO']}}”</span> hoy mismo. No sigas posponiendo el cuerpo que quieres.</p>
       <v-btn 
         block 
         :color="infoCurso['COLOR - BUTTONS']" 

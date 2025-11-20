@@ -7,7 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/cosmetica-en-casa/' : '/',
+  base: mode === 'production' ? '/te-quema-grasa/' : '/',
   plugins: [
     vue(),
     vueJsx(),

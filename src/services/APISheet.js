@@ -4,19 +4,15 @@
 
 const SHEET_ID = import.meta.env.VITE_GOOGLE_SHEET_ID // Debe estar en tu .env
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY // Debe estar en tu .env
-const RANGE1 = "'cursos'!A1:BBn" // Ajusta el rango según tus datos
+const RANGE1 = "'cursos'!A1:BB1" // Ajusta el rango según tus datos
 const RANGE2 = "'redes sociales'!A1:C100"
+const RANGE3 = "'cursos'!A4:BB4"
 
 
 async function getSheetData(slug) {
-  //BUSCAMOS PRIMERO SI EL SLUG COINCIDE CON ALGUNA FILA
-  let slugData = await findRowBySlug(slug, SHEET_ID, API_KEY)
-
-  console.log("slugData: ", slugData)
-
 
   // ahora si hacemos la consulta normal
-  const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values:batchGet?ranges=${RANGE1.replace("n", slugData)}&ranges=${RANGE2}&key=${API_KEY}`
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values:batchGet?ranges=${RANGE1}&ranges=${RANGE2}&ranges=${RANGE3}&key=${API_KEY}`
   const response = await fetch(url)
   
   if (!response.ok) {
@@ -25,6 +21,10 @@ async function getSheetData(slug) {
 
   const data = await response.json()
   console.log("respuesta: ", data)
+  // agrupamos los headers con los datos
+
+  data.valueRanges[0].values = [...data.valueRanges[0].values, ...data.valueRanges[2].values]
+
   // data.values es un array de arrays, cada subarray es una fila
   return [
     parseSheetData(data.valueRanges[0].values)
